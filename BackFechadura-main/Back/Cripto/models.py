@@ -7,6 +7,7 @@ class fechadura(models.Model):
     nome_fecha = models.CharField(max_length=50)
     senha_entrada = models.CharField(max_length=50)
     responsavel = models.CharField(max_length=20)
+    
 
 
 class log_acess(models.Model):
