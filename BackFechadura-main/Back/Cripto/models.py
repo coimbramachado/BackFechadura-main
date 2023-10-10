@@ -12,7 +12,9 @@ class fechadura(models.Model):
 
 class log_acess(models.Model):
 
-    usuario = models.CharField()
-    hora_abertura = models.DateField()
-    id_fechadura = models.CharField()
+    usuario = models.CharField(max_length=50)
+    hora_abertura = models.DateField(max_length=50)
+    id_fechadura = models.CharField(max_length=50)
+    controle_entrada = models.CharField(max_length=50)
+
 
