@@ -6,12 +6,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from django.shortcuts import get_object_or_404
 
-from cliente.serializers import ClienteSerializer
+from User.serializers import ClienteSerializer
 from django.contrib.auth.models import User
-from cliente.models import Cliente
+from User.models import user
 
 class ClientesAPIv2ViewSet(ModelViewSet):
-    queryset = Cliente.objects.all()
+    queryset = User.objects.all()
 
     serializer_class = ClienteSerializer
     pagination_class = None
@@ -78,13 +78,13 @@ def apiOverview(request):
 
 @api_view(["GET"])
 def clienteList(request):
-    clientes = Cliente.objects.all()
+    clientes = User.objects.all()
     serializer = ClienteSerializer(clientes, many=True)
     return Response(serializer.data)
 
 @api_view(["GET"])
 def clienteDetail(request, pk):
-    clientes = Cliente.objects.get(id=pk)
+    clientes = User.objects.get(id=pk)
     serializer = ClienteSerializer(clientes, many=False)
     return Response(serializer.data)
 
@@ -99,7 +99,7 @@ def clienteCreate(request):
 
 @api_view(["PATCH"])
 def clienteUpdate(request, pk):
-    cliente = Cliente.objects.get(id=pk)
+    cliente = User.objects.get(id=pk)
     serializer = ClienteSerializer(instance=cliente, data=request.data)
 
     if serializer.is_valid():
@@ -109,7 +109,7 @@ def clienteUpdate(request, pk):
 
 @api_view(["DELETE"])
 def clienteDelete(request, pk):
-    cliente = Cliente.objects.get(id=pk)
+    cliente = User.objects.get(id=pk)
     cliente.delete()
 
     return Response("Item successfully deleted!")
